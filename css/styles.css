@@ -627,8 +627,8 @@ header {
   }
   
   .testimonial-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minwidth(400px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 20px;
   }
   
@@ -636,6 +636,7 @@ header {
     border: 1px solid #ddd;
     border-radius: 10px;
     padding: 20px;
+    width: 32%;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     background-color: white;
   }
@@ -849,6 +850,9 @@ header {
   }
   
   @media (max-width: 768px) {
+    .testimonial-card{
+      width: 100%;
+    }
     .footer {
       flex-direction: column;
       text-align: center;
