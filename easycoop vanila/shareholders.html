@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shareholders' Documentation</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9fbfd;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      margin-top: 50px;
+      max-width: 400px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+
+    .progress-bar {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .progress {
+      flex-grow: 1;
+      height: 8px;
+      background: #e0e0e0;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .progress .completed {
+      width: 66%;
+      height: 100%;
+      background: #4caf50;
+    }
+
+    .step-info {
+      margin-left: 10px;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .list-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 10px;
+      background-color: #fff;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .list-item:hover {
+      background-color: #f0f4f8;
+    }
+
+    .list-item .name {
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .list-item .actions i {
+      margin-left: 10px;
+      color: #007bff;
+      cursor: pointer;
+    }
+
+    .list-item .actions i:hover {
+      color: #0056b3;
+    }
+
+    .btn-continue {
+      background: #007bff;
+      color: white;
+      padding: 10px;
+      text-align: center;
+      border-radius: 8px;
+      border: none;
+      width: 100%;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .btn-continue:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="progress-bar">
+      <div class="progress">
+        <div class="completed"></div>
+      </div>
+      <span class="step-info">Step 4 of 6</span>
+    </div>
+    <h2>Shareholders' Documentation</h2>
+    <p style="color: #666; font-size: 14px;">
+      Upload the required documents for each shareholder. Maximum of 5 shareholders. Click to add shareholder's information.
+    </p>
+    <div class="list">
+      <div class="list-item" onclick="redirectToAddPage(1)" data-id="1">
+        <span class="name">SHAREHOLDER 1</span>
+        <div class="actions">
+          <i class="fas fa-edit" onclick="editShareholder(event, 1)"></i>
+          <i class="fas fa-trash" onclick="deleteShareholder(event, 1)"></i>
+        </div>
+      </div>
+      <div class="list-item" onclick="redirectToAddPage(2)" data-id="2">
+        <span class="name">SHAREHOLDER 2</span>
+        <div class="actions">
+          <i class="fas fa-edit" onclick="editShareholder(event, 2)"></i>
+          <i class="fas fa-trash" onclick="deleteShareholder(event, 2)"></i>
+        </div>
+      </div>
+      <div class="list-item" onclick="redirectToAddPage(3)" data-id="3">
+        <span class="name">SHAREHOLDER 3</span>
+        <i class="fas fa-plus"></i>
+      </div>
+      <div class="list-item" onclick="redirectToAddPage(4)" data-id="4">
+        <span class="name">SHAREHOLDER 4</span>
+        <i class="fas fa-plus"></i>
+      </div>
+      <div class="list-item" onclick="redirectToAddPage(5)" data-id="5">
+        <span class="name">SHAREHOLDER 5</span>
+        <i class="fas fa-plus"></i>
+      </div>
+    </div>
+    <button class="btn-continue">Continue</button>
+  </div>
+
+  <script>
+    function redirectToAddPage(id) {
+      // Redirect to the Add Shareholder page
+      console.log(`Redirecting to Add Shareholder page for ID: ${id}`);
+      // Simulate navigation (replace this with your actual navigation code)
+      setTimeout(() => {
+        const shareholderName = prompt("Enter shareholder name:");
+        if (shareholderName) {
+          updateShareholder(id, shareholderName);
+        }
+      }, 500);
+    }
+
+    function updateShareholder(id, name) {
+      const listItem = document.querySelector(`.list-item[data-id="${id}"]`);
+      listItem.querySelector(".name").textContent = name;
+      listItem.querySelector(".actions").innerHTML = `
+        <i class="fas fa-edit" onclick="editShareholder(event, ${id})"></i>
+        <i class="fas fa-trash" onclick="deleteShareholder(event, ${id})"></i>
+      `;
+    }
+
+    function editShareholder(event, id) {
+      event.stopPropagation();
+      console.log(`Editing shareholder with ID: ${id}`);
+      // Add editing logic here
+    }
+
+    function deleteShareholder(event, id) {
+      event.stopPropagation();
+      console.log(`Deleting shareholder with ID: ${id}`);
+      const listItem = document.querySelector(`.list-item[data-id="${id}"]`);
+      listItem.querySelector(".name").textContent = `SHAREHOLDER ${id}`;
+      listItem.querySelector(".actions").innerHTML = `<i class="fas fa-plus"></i>`;
+    }
+  </script>
+</body>
+</html>
